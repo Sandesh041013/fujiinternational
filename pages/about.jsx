@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Button from '../components/Button.jsx';
 import Image from 'next/image';
+import TestimonialSection from '../components/Testimonial.jsx';
 
 const values = [
   { icon: '◈', title: 'Integrity', desc: 'We build relationships on transparency, honesty, and unwavering ethical standards in every engagement.' },
@@ -77,9 +78,9 @@ export default function About() {
             </div>
             <div className="bg-dark rounded-lg p-10 border border-gray-700">
               <span className="text-3xl mb-5 block text-primary">◈</span>
-              <h3 className="text-2xl font-bold text-white mb-5">Our Vision</h3>
+              <h3 className="text-2xl font-bold text-black mb-5">Our Vision</h3>
               <div className="w-12 h-1 bg-primary rounded-sm mb-5" />
-              <p className="text-white/55 leading-relaxed">
+              <p className="text-black leading-relaxed">
                 Our vision is to become a leading and most trusted consultancy in the field of international education and employment. We strive to build a future where every individual has access to global opportunities and the right guidance to succeed beyond borders.
               </p>
             </div>
@@ -106,26 +107,30 @@ export default function About() {
           </div>
         </div>
       </section>
-
+    <section>
+    <TestimonialSection/>
+    </section>
+       
+   
       {/* Team Section */}
       <section className="section bg-dark">
         <div className="container">
           <div className="text-center mb-14">
             <span className="eyebrow eyebrow--white">Leadership</span>
-            <h2 className="section-title text-3xl md:text-4xl lg:text-5xl text-white">
+            <h2 className="section-title text-3xl md:text-4xl lg:text-5xl text-black">
               The People Behind FUJI
             </h2>
             <div className="divider divider--center" />
           </div>
           <div className="grid-4">
             {team.map(({ name, role, region }, i) => (
-              <div key={name} className="text-center text-white animate-fadeUp" style={{ animationDelay: `${(i + 1) * 0.1}s` }}>
-                <div className="w-16 h-16 bg-primary rounded-lg flex items-center justify-center font-black text-xl text-white mx-auto mb-4">
+              <div key={name} className="text-center text-black animate-fadeUp" style={{ animationDelay: `${(i + 1) * 0.1}s` }}>
+                <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center font-black text-xl text-white mx-auto mb-4">
                   {name.split(' ').map(w => w[0]).join('')}
                 </div>
                 <div className="font-semibold text-lg mb-1">{name}</div>
-                <div className="text-sm text-white/65 mb-3">{role}</div>
-                <div className="text-xs text-white/50">◉ {region}</div>
+                <div className="text-sm black mb-3">{role}</div>
+                <div className="text-xs text-black">◉ {region}</div>
               </div>
             ))}
           </div>

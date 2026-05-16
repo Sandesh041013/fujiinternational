@@ -5,5 +5,7 @@
   "/": "pages/index.js",
   "/about": "pages/about.js",
   "/gallery": "pages/gallery.js",
-  "/universities": "pages/universities.js"
+  "/universities": "pages/universities.js",
+  "/contact": "pages/contact.js",
+  "/services": "pages/services.js"
 }
