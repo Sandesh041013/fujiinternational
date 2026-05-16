@@ -3,9 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/about": "pages/about.js",
-  "/gallery": "pages/gallery.js",
-  "/universities": "pages/universities.js",
-  "/contact": "pages/contact.js",
-  "/services": "pages/services.js"
+  "/about": "pages/about.js"
 }

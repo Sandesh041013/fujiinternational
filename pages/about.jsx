@@ -3,6 +3,7 @@ import Button from '../components/Button.jsx';
 import Image from 'next/image';
 import TestimonialSection from '../components/Testimonial.jsx';
 
+
 const values = [
   { icon: '◈', title: 'Integrity', desc: 'We build relationships on transparency, honesty, and unwavering ethical standards in every engagement.' },
   { icon: '◉', title: 'Commitment', desc: 'We are dedicated to supporting our clients from the beginning until they achieve their goals. Our team ensures continuous guidance, timely updates, and reliable assistance throughout the entire visa process.' },
@@ -110,6 +111,7 @@ export default function About() {
     <section>
     <TestimonialSection/>
     </section>
+    
        
    
       {/* Team Section */}

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import Button from '../components/Button.jsx';
 import ServiceCard from '../components/ServiceCard.jsx';
+import Achivements from '@/components/Achivements.jsx';
 
 const stats = [
   { value: '20+', label: 'Years of Guidance' },
@@ -255,6 +256,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section>
+      <Achivements/>
+    </section>
 
       {/* CTA Section */}
       <section className="bg-primary py-20 md:py-24">
