@@ -1,20 +1,23 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
   const router = useRouter();
 
   useEffect(() => {
-    const onScroll = () => {
+    const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", handleScroll);
+
+    return () =>
+      window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -45,48 +48,70 @@ export default function Navbar() {
       : router.pathname.startsWith(href);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[1000] h-20 transition-all duration-300 ${
-      scrolled
-        ? "bg-white/97 backdrop-blur-3xl shadow-sm border-b border-black/5"
-        : "bg-transparent border-b border-white/8"
-    }`}>
-      <div className="container h-full flex items-center justify-between gap-5 px-4 sm:px-6">
-        {/* Logo */}
-        <Link href="/" className="flex items-center h-full flex-shrink-0">
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 border-b transition-all duration-300 ${
+        scrolled
+          ? "bg-white/95 backdrop-blur-xl border-black/5 shadow-md"
+          : "bg-transparent border-white/10"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto h-[80px] px-5 flex items-center justify-between">
+
+        {/* LOGO */}
+        <Link
+          href="/"
+          className="flex items-center shrink-0"
+        >
           <Image
             src="/fujibigbg.png"
             alt="Fuji International Consultancy"
             width={220}
             height={80}
-            className="w-auto h-auto max-h-16 object-contain block"
             priority
+            className="object-contain w-auto h-auto max-h-[60px]"
           />
         </Link>
 
-        {/* Desktop Nav */}
+        {/* DESKTOP NAV */}
         <ul className="hidden lg:flex items-center gap-1 ml-auto">
           {links.map((item) => (
-            <li key={item.href} className="relative group">
+            <li
+              key={item.href}
+              className="relative group"
+            >
               <Link
                 href={item.href}
-                className={`relative px-3.5 py-2 text-sm font-semibold rounded-lg transition-all duration-75 ${
-                  /* use dark text by default so links are visible on light pages */
-                  scrolled ? "text-dark hover:text-primary" : "text-dark hover:text-primary"
-                } ${isActive(item.href) ? (scrolled ? "text-primary" : "text-primary") : ""}`}
+                className={`relative px-4 py-2 text-[15px] font-semibold transition duration-300 ${
+                  scrolled
+                    ? "text-black"
+                    : "text-white"
+                } ${
+                  isActive(item.href)
+                    ? "text-red-600"
+                    : ""
+                } hover:text-red-600`}
               >
                 {item.label}
-                {isActive(item.href) && (
-                  <span className="absolute bottom-0.5 left-3.5 right-3.5 h-0.5 bg-primary"></span>
-                )}
+
+                {/* underline */}
+                <span
+                  className={`absolute left-4 right-4 bottom-1 h-[2px] bg-red-600 origin-left transition-transform duration-300 ${
+                    isActive(item.href)
+                      ? "scale-x-100"
+                      : "scale-x-0 group-hover:scale-x-100"
+                  }`}
+                />
               </Link>
 
+              {/* DROPDOWN */}
               {item.dropdown && (
-                <div className="absolute top-full left-0 min-w-max bg-dark border border-gray-700 rounded-xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 z-50">
+                <div className="absolute top-[120%] left-0 min-w-[190px] rounded-xl bg-[#111] border border-white/10 overflow-hidden opacity-0 invisible translate-y-3 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300">
+
                   {item.dropdown.map((sub) => (
                     <Link
                       key={sub.href}
                       href={sub.href}
-                      className="block px-4 py-3 text-white text-sm hover:bg-dark-soft transition-colors duration-75"
+                      className="block px-5 py-3 text-sm text-white hover:bg-white/5 transition"
                     >
                       {sub.label}
                     </Link>
@@ -97,64 +122,90 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA Button */}
+        {/* CTA */}
         <Link
           href="/contact"
-          className="hidden lg:flex flex-shrink-0 px-5 py-3 bg-primary text-white rounded-lg text-xs font-bold transition-all duration-75 hover:-translate-y-0.5 hover:bg-primary-dark"
+          className="hidden lg:inline-flex ml-6 bg-red-600 hover:bg-red-700 text-white font-semibold text-sm px-6 py-3 rounded-lg transition duration-300 hover:-translate-y-[2px]"
         >
           Get in Touch
         </Link>
 
-        {/* Hamburger Menu */}
+        {/* HAMBURGER */}
         <button
-          className="lg:hidden flex flex-col justify-center gap-1.5 w-10 h-10 bg-none border-0 cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle Menu"
+          className="lg:hidden relative w-10 h-10 flex flex-col justify-center items-center gap-[5px]"
         >
           <span
-            className={`w-6 h-0.5 bg-dark rounded-full transition-all duration-300 ${
-              scrolled ? "bg-dark" : ""
-            } ${menuOpen ? (scrolled ? "-translate-y-2 rotate-45 bg-dark" : "-translate-y-2 rotate-45") : ""}`}
+            className={`w-6 h-[2px] rounded-full transition-all duration-300 ${
+              scrolled
+                ? "bg-black"
+                : "bg-white"
+            } ${
+              menuOpen
+                ? "translate-y-[7px] rotate-45"
+                : ""
+            }`}
           />
+
           <span
-            className={`w-6 h-0.5 bg-dark rounded-full transition-all duration-300 ${
-              scrolled ? "bg-dark" : ""
-            } ${menuOpen ? "opacity-0" : ""}`}
+            className={`w-6 h-[2px] rounded-full transition-all duration-300 ${
+              scrolled
+                ? "bg-black"
+                : "bg-white"
+            } ${
+              menuOpen
+                ? "opacity-0"
+                : ""
+            }`}
           />
+
           <span
-            className={`w-6 h-0.5 bg-dark rounded-full transition-all duration-300 ${
-              scrolled ? "bg-dark" : ""
-            } ${menuOpen ? (scrolled ? "translate-y-2 -rotate-45 bg-dark" : "translate-y-2 -rotate-45") : ""}`}
+            className={`w-6 h-[2px] rounded-full transition-all duration-300 ${
+              scrolled
+                ? "bg-black"
+                : "bg-white"
+            } ${
+              menuOpen
+                ? "-translate-y-[7px] -rotate-45"
+                : ""
+            }`}
           />
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       <div
-        className={`absolute top-20 left-0 right-0 bg-white flex flex-col overflow-hidden transition-all duration-400 max-h-0 lg:hidden ${
-          menuOpen ? "max-h-96" : ""
+        className={`lg:hidden overflow-hidden bg-white transition-all duration-500 border-t border-black/5 ${
+          menuOpen
+            ? "max-h-[500px]"
+            : "max-h-0"
         }`}
       >
-        {links.map(({ href, label }) => (
-          <Link
-            key={href}
-            href={href}
-            className={`px-6 py-4 text-base font-semibold transition-all duration-75 border-0 ${
-              isActive(href)
-                ? "text-primary pl-7.5"
-                : "text-dark hover:text-primary hover:pl-7.5"
-            }`}
-          >
-            {label}
-          </Link>
-        ))}
+        <div className="flex flex-col py-3">
 
-        <Link
-          href="/contact"
-          className="mx-6 mb-6 mt-2 px-5 py-3.5 bg-primary text-white text-center font-bold rounded-lg text-sm transition-all duration-75"
-        >
-          Get in Touch →
-        </Link>
+          {links.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`px-6 py-4 text-base font-semibold transition-all duration-300 ${
+                isActive(item.href)
+                  ? "text-red-600 pl-8"
+                  : "text-black hover:text-red-600 hover:pl-8"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+
+          <div className="px-6 pt-3 pb-5">
+            <Link
+              href="/contact"
+              className="block text-center bg-[#E60013] hover:bg-red-700 text-white font-bold rounded-lg py-4 transition"
+            >
+              Get in Touch →
+            </Link>
+          </div>
+        </div>
       </div>
     </nav>
   );

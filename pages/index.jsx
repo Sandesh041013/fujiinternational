@@ -1,278 +1,341 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import { useEffect } from 'react';
-import Button from '../components/Button.jsx';
-import ServiceCard from '../components/ServiceCard.jsx';
+import Head from "next/head";
+import Link from "next/link";
+import { useEffect } from "react";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 const stats = [
-  { value: '20+', label: 'Years of Guidance' },
-  { value: '100+', label: 'Successful Visa Assistance' },
-  { value: '50+', label: 'Partner Institutions' },
-  { value: '95%', label: 'Client Satisfaction' },
+  { value: "20+", label: "Years of Guidance" },
+  { value: "100+", label: "Successful Visa Assistance" },
+  { value: "50+", label: "Partner Institutions" },
+  { value: "95%", label: "Client Satisfaction" },
+];
+
+const services = [
+  {
+    icon: "🧭",
+    title: "Clear Step-by-Step Process",
+    description:
+      "We simplify complex visa and admission processes into clear, guided steps so you always know what comes next.",
+  },
+  {
+    icon: "🤝",
+    title: "Personal Mentor Support",
+    description:
+      "Each applicant receives personalized guidance from experienced consultants throughout their journey.",
+    featured: true,
+  },
+  {
+    icon: "📈",
+    title: "Proven Success Outcomes",
+    description:
+      "Our structured approach has helped many students successfully secure admissions and visa approvals in Japan.",
+  },
 ];
 
 export default function Home() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+
   useEffect(() => {
-    document.body.classList.add('hero-page');
-    return () => document.body.classList.remove('hero-page');
+    document.body.classList.add("bg-black");
+
+    return () => document.body.classList.remove("bg-black");
   }, []);
 
   return (
     <>
       <Head>
-        <title>
-          FUJI International Consultancy — Study & Work in Japan
-        </title>
-
-        <meta
-          name="description"
-          content="FUJI International Consultancy provides expert guidance for study visas, work opportunities, visa documentation, and relocation support in Japan."
-        />
-
-        <meta
-          property="og:title"
-          content="FUJI International Consultancy"
-        />
-
-        <meta
-          property="og:description"
-          content="Your trusted partner for study and work opportunities in Japan."
-        />
+        <title>FUJI International Consultancy</title>
       </Head>
 
-      {/* Hero Section */}
-      <section className="min-h-screen bg-dark flex flex-col items-center justify-center relative overflow-hidden pt-32 pb-20 md:pt-40">
-        {/* Background with zoom animation */}
-        <div
-          className="absolute inset-0 pointer-events-none z-0 animate-heroZoom"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(10,10,10,0.65), rgba(10,10,10,0.85)), url("/fuji bg.jpg")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-          }}
-          aria-hidden
-        />
+      {/* HERO */}
+      <section className="relative min-h-screen overflow-hidden bg-black flex items-center justify-center px-6 py-28">
+        {/* Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Animated Background Image */}
+          {/* Animated Background Image */}
+<div
+  className="absolute inset-0 bg-cover bg-center animate-[zoomHero_8s_ease-in-out_infinite]"
+  style={{
+    backgroundImage:
+      "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)), url('/fuji bg.jpg')",
+  }}
+/>
 
-        {/* Glow effect */}
-        <div
-          className="absolute top-[-20%] left-[-10%] w-80 h-80 md:w-96 md:h-96 rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              'radial-gradient(circle, rgba(225,6,0,0.12) 0%, transparent 65%)',
-          }}
-          aria-hidden
-        />
+<style jsx>{`
+  @keyframes zoomHero {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.08);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+`}</style>
 
-        {/* Grid overlay */}
-        <div
-          className="absolute inset-0 pointer-events-none z-0"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-            maskImage:
-              'radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%)',
-          }}
-          aria-hidden
-        />
+          {/* Grid Overlay */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        </div>
 
-        {/* Content */}
-        <div className="container relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/6 border border-white/10 rounded-full px-4.5 py-2 mb-8 animate-fadeUp">
-            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-            <span className="text-sm font-medium text-white/65">
-              Trusted Guidance for Study & Work in Japan
-            </span>
+        {/* Glow */}
+        <div className="absolute top-[-20%] left-[-10%] w-[80vw] h-[80vw] rounded-full bg-red-600/10 blur-3xl" />
+
+        <div className="relative z-10 max-w-5xl text-center">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-white/70 mb-8">
+            <span className="h-2 w-2 rounded-full bg-red-600 animate-ping" />
+            Trusted Guidance for Study & Work in Japan
           </div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-7 leading-tight animate-fadeUp delay-1">
+          {/* Title */}
+          <h1 className="text-white font-bold leading-tight text-5xl md:text-7xl mb-8">
             Your Journey
             <br />
-            <span className="text-primary">To Study & Work</span>
+            <span className="text-[#E60013]">To Study & Work</span>
             <br />
             In Japan
           </h1>
 
-          <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed animate-fadeUp delay-2">
-            FUJI International Consultancy helps students and professionals achieve their dream of studying and working in Japan through trusted guidance, visa support, and complete relocation assistance.
+          {/* Subtitle */}
+          <p className="max-w-2xl mx-auto text-white/60 text-lg leading-8 mb-10">
+            FUJI International Consultancy helps students and professionals
+            achieve their dream of studying and working in Japan through trusted
+            guidance, visa support, and complete relocation assistance.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap mb-14 animate-fadeUp delay-3">
-            <Button href="/services" size="lg" arrow>
+          {/* Buttons */}
+          <div className="flex flex-wrap items-center justify-center gap-5 mb-14">
+            <Link
+              href="/services"
+              className="bg-[#E60013] hover:bg-red-700 transition px-12 py-5 text-white font-semibold"
+            >
               Explore Services
-            </Button>
-            <Button href="/about" variant="ghost" size="lg">
+            </Link>
+
+            <Link
+              href="/about"
+              className="border border-white/20 hover:bg-white hover:text-black transition px-12 py-5 text-white font-semibold"
+            >
               Why Choose Us
-            </Button>
+            </Link>
           </div>
 
-          <div className="flex flex-col items-center gap-2.5 text-xs text-white/35 animate-fadeUp delay-4">
-            <span>Helping students & professionals build futures through</span>
-            <div className="flex gap-4 font-semibold text-white/55">
+          {/* Trust */}
+          <div className="flex flex-col items-center gap-3 text-white/40 text-sm">
+            <span>
+              Helping students & professionals build futures through
+            </span>
+
+            <div className="flex gap-4 font-semibold text-white/60">
               <span>Japan</span>
-              <span aria-hidden>·</span>
+              <span>•</span>
               <span>Education</span>
-              <span aria-hidden>·</span>
+              <span>•</span>
               <span>Employment</span>
             </div>
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center"
-          aria-hidden
-        >
-          <span className="w-0.5 h-12 bg-gradient-to-b from-white/40 to-transparent animate-scrollLine" />
+        {/* Scroll */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+          <div className="w-[2px] h-14 bg-gradient-to-b from-white/50 to-transparent animate-bounce" />
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="section bg-light">
-        <div className="container">
-          <div className="grid-4">
-            {stats.map(({ value, label }, i) => (
-              <div
-                key={label}
-                className="text-center py-8 animate-fadeUp"
-                style={{ animationDelay: `${(i + 1) * 0.1}s` }}
-              >
-                <div className="font-black text-3xl md:text-4xl text-primary mb-2.5 leading-none">
-                  {value}
+      {/* STATS */}
+      <section
+        ref={ref}
+        className="bg-[#0f0f0f] py-24 px-6 relative overflow-hidden"
+      >
+        {/* Glow Effects */}
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-red-600/10 blur-[120px]" />
+        <div className="absolute bottom-0 right-0 w-[350px] h-[350px] bg-red-600/10 blur-[120px]" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            {stats.map((item) => {
+              const number = parseInt(item.value);
+
+              return (
+                <div
+                  key={item.label}
+                  className="bg-white/5 border border-white/10 backdrop-blur-md rounded-[28px] p-10 hover:border-red-600/40 hover:-translate-y-2 transition duration-300"
+                >
+                  <h2 className="text-4xl md:text-5xl font-bold text-[#E60013] mb-4">
+                    {inView ? (
+                      <CountUp
+                        start={0}
+                        end={number}
+                        duration={2.5}
+                      />
+                    ) : (
+                      0
+                    )}
+
+                    {item.value.includes("+")
+                      ? "+"
+                      : item.value.includes("%")
+                      ? "%"
+                      : ""}
+                  </h2>
+
+                  <p className="uppercase tracking-[3px] text-white/60 text-sm">
+                    {item.label}
+                  </p>
                 </div>
-                <div className="text-sm font-medium text-gray-mid uppercase tracking-widest">
-                  {label}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="section">
-        <div className="container">
-          <div className="max-w-2xl mb-14">
-            <span className="eyebrow">Why Students Trust FUJI</span>
+      {/* SERVICES */}
+      <section className="bg-white py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-xl mb-16">
+            <span className="uppercase tracking-widest text-[#E60013] text-sm font-semibold">
+              Why Students Trust FUJI
+            </span>
 
-            <h2 className="section-title text-3xl md:text-4xl lg:text-5xl">
-              Built on Guidance,<br />
+            <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight mt-4">
+              Built on Guidance,
+              <br />
               Trust & Results
             </h2>
 
-            <div className="divider" />
+            <div className="w-16 h-1 bg-[#E60013] rounded-full my-6" />
 
-            <p className="text-gray-mid max-w-xl leading-relaxed">
-              We are more than a consultancy — we are a support system for students and professionals who want to build their future in Japan with confidence.
+            <p className="text-gray-500 leading-8">
+              We are more than a consultancy — we are a support system for
+              students and professionals who want to build their future in Japan
+              with confidence.
             </p>
           </div>
 
-          <div className="grid-3 mb-10">
-            {[
-              {
-                icon: '🧭',
-                title: 'Clear Step-by-Step Process',
-                description:
-                  'We simplify complex visa and admission processes into clear, guided steps so you always know what comes next.',
-              },
-              {
-                icon: '🤝',
-                title: 'Personal Mentor Support',
-                description:
-                  'Each applicant receives personalized guidance from experienced consultants throughout their journey.',
-                featured: true,
-              },
-              {
-                icon: '📈',
-                title: 'Proven Success Outcomes',
-                description:
-                  'Our structured approach has helped many students successfully secure admissions and visa approvals in Japan.',
-              },
-            ].map((s, i) => (
-              <ServiceCard key={s.title} {...s} index={i} />
+          {/* Cards */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className={`rounded-3xl p-8 border transition duration-300 hover:-translate-y-2 ${
+                  service.featured
+                    ? "bg-[#E60013] text-white border-[#E60013] shadow-2xl"
+                    : "bg-white border-gray-200 hover:shadow-xl"
+                }`}
+              >
+                <div className="text-5xl mb-6">{service.icon}</div>
+
+                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
+
+                <p
+                  className={`leading-7 ${
+                    service.featured ? "text-white/80" : "text-gray-500"
+                  }`}
+                >
+                  {service.description}
+                </p>
+              </div>
             ))}
           </div>
 
-          <div className="text-center">
-            <Button href="/about" variant="secondary" size="md" arrow>
-              Learn More About Us
-            </Button>
+          <div className="text-center mt-14">
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 bg-black text-white px-8 py-4 rounded-full hover:bg-red-600 transition"
+            >
+              Learn More About Us →
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="section bg-dark">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <div>
-              <span className="eyebrow eyebrow--white">About FUJI</span>
+      {/* ABOUT STRIP */}
+      <section className="bg-black py-24 px-6">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+          {/* Left */}
+          <div>
+            <span className="uppercase tracking-widest text-white/60 text-sm font-semibold">
+              About FUJI
+            </span>
 
-              <h2 className="text-white text-3xl md:text-4xl lg:text-5xl mb-5 font-bold">
-                Your Trusted Partner
-                <br />
-                <span className="text-primary">
-                  for Japan Opportunities
-                </span>
-              </h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mt-4 mb-6">
+              Your Trusted Partner
+              <br />
+              <span className="text-red-600">
+                for Japan Opportunities
+              </span>
+            </h2>
 
-              <div className="w-12 h-1 bg-primary rounded-sm mb-7" />
+            <div className="w-14 h-1 bg-[#E60013] rounded-full mb-8" />
 
-              <p className="text-white/55 leading-relaxed mb-9 max-w-xl">
-                FUJI International Consultancy is committed to helping students and professionals build successful futures in Japan. We provide expert support for study opportunities, employment pathways, visa processing, and relocation guidance every step of the way.
-              </p>
+            <p className="text-white/60 leading-8 mb-10 max-w-xl">
+              FUJI International Consultancy is committed to helping students
+              and professionals build successful futures in Japan. We provide
+              expert support for study opportunities, employment pathways, visa
+              processing, and relocation guidance every step of the way.
+            </p>
 
-              <Button href="/about" variant="ghost" size="md" arrow>
-                Learn More About Us
-              </Button>
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 border border-white/20 hover:bg-white hover:text-black transition px-8 py-4 rounded-full text-white font-semibold"
+            >
+              Learn More About Us →
+            </Link>
+          </div>
+
+          {/* Right */}
+          <div className="relative hidden lg:flex items-center justify-center">
+            <div className="w-[280px] h-[380px] rounded-[32px] border border-white/10 bg-white/5 flex flex-col items-center justify-center gap-14">
+              <img
+                src="/fujibigbg.png"
+                alt="FUJI Logo"
+                className="w-40 object-contain"
+              />
+
+              <div className="space-y-3 w-32">
+                <div className="h-[2px] bg-white/20 rounded-full" />
+                <div className="h-[2px] w-3/4 bg-white/20 rounded-full" />
+                <div className="h-[2px] w-1/2 bg-white/20 rounded-full" />
+              </div>
             </div>
 
-            {/* Visual Element */}
-            <div className="hidden lg:flex justify-center relative" aria-hidden>
-              <div className="w-64 h-96 bg-white/4 border border-white/10 rounded-2xl flex flex-col items-center justify-center gap-14 relative">
-                <div className="w-20 h-20 bg-primary rounded-lg font-black text-3xl text-white flex items-center justify-center flex-shrink-0">
-                  F
-                </div>
+            {/* Badge */}
+            <div className="absolute -bottom-5 right-10 bg-[#E60013] rounded-2xl px-6 py-4 shadow-2xl">
+              <h3 className="text-3xl font-bold text-white">100+</h3>
 
-                <div className="flex flex-col gap-2 w-32">
-                  <span className="block h-0.5 bg-white/15 rounded-full"></span>
-                  <span className="block h-0.5 bg-white/15 rounded-full w-3/4"></span>
-                  <span className="block h-0.5 bg-white/15 rounded-full w-1/2"></span>
-                </div>
-              </div>
-
-              <div className="absolute -bottom-3 -right-8 bg-primary rounded-lg p-4 shadow-red">
-                <div className="font-black text-2xl text-white leading-none mb-1">
-                  100+
-                </div>
-                <div className="text-xs uppercase tracking-wider text-white/70 font-medium">
-                  Success Stories
-                </div>
-              </div>
+              <p className="text-white/70 uppercase text-xs tracking-widest">
+                Success Stories
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-primary py-20 md:py-24">
-        <div className="container">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div>
-              <h2 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
-                Ready to Start Your Japan Journey?
-              </h2>
-              <p className="text-white/75 text-base">
-                Speak with our consultants and get professional guidance today.
-              </p>
-            </div>
+      {/* CTA */}
+      <section className="bg-[#E60013] py-20 px-6">
+        <div className="max-w-7xl mx-auto flex flex-wrap gap-10 justify-between items-center">
+          <div>
+            <h2 className="text-4xl font-bold text-white mb-3">
+              Ready to Start Your Japan Journey?
+            </h2>
 
-            <Button href="/contact" variant="secondary" size="lg" arrow>
-              Book a Consultation
-            </Button>
+            <p className="text-white/80 text-lg">
+              Speak with our consultants and get professional guidance today.
+            </p>
           </div>
+
+          <Link
+            href="/contact"
+            className="border border-white text-white hover:bg-white hover:text-red-600 transition px-8 py-4 rounded-full font-semibold"
+          >
+            Book a Consultation
+          </Link>
         </div>
       </section>
     </>
