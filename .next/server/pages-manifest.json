@@ -1,7 +1,8 @@
 {
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
-  "/universities": "pages/universities.js",
+  "/_document": "pages/_document.js",
+  "/courses/jlpt": "pages/courses/jlpt.js",
+  "/courses/nat": "pages/courses/nat.js",
   "/courses/jft": "pages/courses/jft.js"
 }

@@ -19,15 +19,15 @@ self.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/courses/jft": [
+    "/courses/jlpt": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/courses/jft.js"
+      "static/chunks/pages/courses/jlpt.js"
     ],
-    "/universities": [
+    "/courses/nat": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/universities.js"
+      "static/chunks/pages/courses/nat.js"
     ]
   },
   "ampFirstPages": []
