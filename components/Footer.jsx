@@ -7,27 +7,34 @@ export default function Footer() {
     <footer className="bg-black text-white border-t-4 border-primary">
       <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pt-16 pb-12 px-4 sm:px-6">
         {/* Brand */}
-        <div>
-          <div className="flex items-center gap-3 mb-5">
-            <div className="w-10 h-10 bg-primary text-white font-black text-lg flex items-center justify-center rounded-sm flex-shrink-0">
-              F
-            </div>
-            <div>
-              <div className="font-black text-base uppercase tracking-widest text-white">
-                FUJI
-              </div>
-              <div className="text-xs font-medium uppercase tracking-wider text-white/40">
-                Study & Work Visa Services
-              </div>
-            </div>
-          </div>
+       <div>
+  <div className="flex items-center gap-3 mb-5">
+    
+    {/* LOGO REPLACED HERE */}
+    <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
+      <img
+        src="/fujibigbg.png"   //
+        alt="FUJI Logo"
+        className="w-10 h-10 object-contain"
+      />
+    </div>
 
-          <p className="text-sm leading-relaxed text-white/50 max-w-sm">
-            Specialist support for students and professionals relocating to Japan
-            and beyond. Admissions, employer matching, visa processing and
-            post-arrival support.
-          </p>
-        </div>
+    <div>
+      <div className="font-black text-base uppercase tracking-widest text-white">
+        FUJI
+      </div>
+      <div className="text-xs font-medium uppercase tracking-wider text-white/40">
+        Study & Work Visa Services
+      </div>
+    </div>
+  </div>
+
+  <p className="text-sm leading-relaxed text-white/50 max-w-sm">
+    Specialist support for students and professionals relocating to Japan
+    and beyond. Admissions, employer matching, visa processing and
+    post-arrival support.
+  </p>
+</div>
 
         {/* Navigation */}
         <div>
@@ -105,7 +112,7 @@ export default function Footer() {
             <li className="flex items-start gap-2.5">
               <span className="text-primary text-sm flex-shrink-0 w-4">◉</span>
               <span className="text-sm text-white/65">
-                Kathmandu · Tokyo · Singapore
+                Butwal
               </span>
             </li>
           </ul>

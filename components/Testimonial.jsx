@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Image from "next/image";
-
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "./ui/card";
 import { Star } from "lucide-react";
@@ -10,7 +9,7 @@ import { Star } from "lucide-react";
 const testimonials = [
   {
     id: 1,
-    name: " Sandesh Acharya",
+    name: "Sandesh Acharya",
     country: "Butwal",
     text: "I was unsure at first, but now I'm confidently working at a specialty coffee shop—thanks to this amazing program!",
     avatar: "/sandesh.jpeg",
@@ -26,7 +25,7 @@ const testimonials = [
     id: 3,
     name: "Michael Chen",
     country: "Kathmandu",
-    text: "I Went japan after completing the course. Couldn't have done it without Fuji Interanational Consultancy!",
+    text: "I went to Japan after completing the course. Couldn't have done it without Fuji International Consultancy!",
     avatar: "/bean1.png",
   },
 ];
@@ -45,26 +44,37 @@ export default function TestimonialSection() {
   const t = testimonials[index];
 
   return (
-    <section className="bg-[#db3615] py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-y-12 md:gap-y-0 md:gap-x-16">
+    <section className="relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#E60013] via-[#b30010] to-[#7a000b]">
+
+      {/* Background Glow Elements */}
+      <div className="absolute top-[-100px] left-[-100px] w-[350px] h-[350px] bg-white/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-[-120px] right-[-120px] w-[400px] h-[400px] bg-white/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/3 w-[220px] h-[220px] bg-yellow-300/10 rounded-full blur-2xl"></div>
+
+      {/* Radial Overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.15),transparent_60%)]"></div>
+
+      {/* Content */}
+      <div className="relative max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-y-12 md:gap-x-16">
+
         {/* Left Column */}
         <div className="flex-1 text-center md:text-left">
-          <h2 className="text-3xl sm:text-4xl md:text-4xl font-bold text-white mb-4">
-            What Our 
-            <br/>
-            Students Say
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
+            What Our <br /> Students Say
           </h2>
-          <p className="text-base sm:text-lg text-white max-w-xl mx-auto md:mx-0">
+
+          <p className="text-base sm:text-lg text-white/90 max-w-xl mx-auto md:mx-0 leading-relaxed">
             Our students share their journeys of learning, growth, and hands-on
             experience across our barista, bakery, bartending, and sushi-making programs.
           </p>
         </div>
 
-        {/* Right Column: Testimonial Card */}
+        {/* Right Column */}
         <div className="flex-1 w-full max-w-xl">
-          <Card className="border-none bg-transparent w-full">
+          <Card className="border-none bg-white/10 backdrop-blur-md shadow-2xl rounded-3xl">
             <CardContent className="p-6">
-              <div className="relative min-h-[280px] sm:min-h-[260px]">
+              <div className="relative min-h-[280px]">
+
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={t.id}
@@ -74,23 +84,26 @@ export default function TestimonialSection() {
                     transition={{ duration: 0.5, ease: "easeInOut" }}
                     className="absolute w-full"
                   >
+
                     {/* Quote */}
-                    <div className="bg-white rounded-tr-full rounded-l-full  px-6 py-4 shadow-sm text-center mb-6">
-                      <p className="text-base sm:text-lg md:text-xl italic text-[#5D4037]">
+                    <div className="bg-white rounded-tr-full rounded-l-full px-6 py-5 shadow-md text-center mb-6">
+                      <p className="text-base sm:text-lg md:text-xl italic text-[#5D4037] leading-relaxed">
                         “{t.text}”
                       </p>
                     </div>
 
                     {/* Avatar + Info */}
-                    <div className="flex flex-col items-end justify-end space-y-3">
+                    <div className="flex flex-col items-end space-y-3">
+
                       <Image
                         src={t.avatar}
                         alt={t.name}
-                        width={60}
-                        height={60}
-                        className="rounded-full object-cover h-16 w-16"
+                        width={64}
+                        height={64}
+                        className="rounded-full object-cover h-16 w-16 border-2 border-white shadow-md"
                       />
 
+                      {/* Stars */}
                       <div className="flex text-[#FFA726]">
                         {Array(5)
                           .fill(0)
@@ -107,13 +120,17 @@ export default function TestimonialSection() {
                       <p className="text-base sm:text-lg font-semibold text-white">
                         {t.name}, {t.country}
                       </p>
+
                     </div>
+
                   </motion.div>
                 </AnimatePresence>
+
               </div>
             </CardContent>
           </Card>
         </div>
+
       </div>
     </section>
   );
