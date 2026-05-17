@@ -1,3 +1,4 @@
+import Achivements from "@/components/Achivements";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -312,6 +313,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section>
+  <Achivements/>
+</section>
 
       {/* CTA */}
       <section className="bg-[#E60013] py-20 px-6">
